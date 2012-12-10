@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>Users</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/default/easyui.css"/>  
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/icon.css"/>  
+<script type="text/javascript" src="../libs/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="../libs/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<script type="text/javascript" src="users.js"></script>
+
+</head>
+
+<body>
+<div id="title" class="title">
+Users
+</div>
+
+<div id="page" class="page">
+
+<table id="dg" title="Users" class="easyui-datagrid" style="width:550px;height:auto"  
+        toolbar="#toolbar" fitColumns="true" singleSelect="true">  
+    <thead>  
+        <tr>  
+            <th field="userId">Id</th>  
+            <th field="email" width="50">Email</th>  
+            <th field="userName" width="50">Username</th>  
+            <th field="password" width="50">Password</th>  
+        </tr>  
+    </thead>  
+</table>  
+<div id="toolbar">  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">Remove User</a>  
+</div>  
+
+<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"  
+        closed="true" buttons="#dlg-buttons">  
+    <div class="ftitle">User Information</div>  
+    <form id="fm" method="post">  
+        <div class="fitem">  
+            <label style="width: 100px">Email:</label>  
+            <input name="email" id="email" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width: 100px">Username:</label>  
+            <input name="userName" id="userName" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width: 100px">Password:</label>  
+            <input name="password" id="password" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width: 100px">Roles:</label>  
+            <input name="roles" id="roles" class="easyui-combobox" style="width:156px;" data-options="valueField:'id',textField:'name',multiple:true,panelHeight:'auto'">  
+        </div>  
+    </form>  
+</div>  
+<div id="dlg-buttons">  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>  
+</div>  
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>Employees</title>
+<script type="text/javascript" src="../libs/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<script type="text/javascript">
+$(document).ready(function () {
+		var serverurl = window.parent.$('#serverurl').val();
+        jQuery.support.cors = true;
+        var urlreq = serverurl + '/emp/list';
+        $.ajax(
+            {
+                type: "GET",
+                url: serverurl + '/emp/list',
+                dataType: "json",
+                success: function (data) {
+                    $.each(data.rows, function (i, item) {
+                        $("#ulist").append('<li id="' + i + '">' + item.firstName + ' ' + item.lastName + '</li>');
+                        $("#cboEmployees").append('<option value="' + i + '">' + item.firstName + ' ' + item.lastName + '</option>');
+                     });
+                },
+                error: function (msg, url, line) {
+                    alert('ERROR, msg = ' + msg + ', url = ' + url + ', line = ' + line);
+                }
+            });
+});
+</script>
+</head>
+<body>
+<div id="title" class="title">
+Employees
+</div>
+
+<div id="page" class="page">
+
+<form>
+
+<select id = "cboEmployees" name = "cboEmployees"></select>
+
+<br/>
+
+<ul id = "ulist">
+</ul>
+
+</form>
+
+</div>
+
+
+</body>
+</html>

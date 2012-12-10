@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>Users</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/default/easyui.css"/>  
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/icon.css"/>  
+<script type="text/javascript" src="../libs/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="../libs/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<script type="text/javascript" src="server.js"></script>
+</head>
+
+<body>
+<div id="title" class="title">
+Server URL
+</div>
+
+<div id="page" class="page">
+
+<div id="dlgServer" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#dlg-buttons">  
+    <div class="ftitle">Server URL</div>  
+    <form id="fm" method="post">  
+        <div class="fitem">  
+            <label style="width: 100px">Server:</label>  
+            <input name="server" id="server" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width: 100px">Port:</label>  
+            <input name="port" id="port" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width: 100px">Project:</label>  
+            <input name="project" id="project" class="easyui-validatebox" required="true">  
+        </div>  
+    </form>  
+</div>  
+<div id="dlg-buttons">  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveServer();$('#dlgServer').dialog('close')">Save</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgServer').dialog('close')">Cancel</a>  
+</div>  
+
+</div>
+
+
+</body>
+</html>

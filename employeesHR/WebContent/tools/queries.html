@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+<title>Queries</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/default/easyui.css"/>  
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/icon.css"/>  
+<script type="text/javascript" src="../libs/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="../libs/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<script type="text/javascript">
+function sendQuery(){ 
+	var serverurl = window.parent.$('#serverurl').val();
+    jQuery.support.cors = true;
+    $("#resultset").empty();
+    $.ajax(
+        {
+            type: "POST",
+            url: serverurl + '/util/query/' + $('#query').val(),
+            dataType: "text",
+            success: function (data) {
+                $("#resultset").append(data);
+            },
+            error: function (msg, url, line) {
+                alert('ERROR, msg = ' + msg + ', url = ' + url + ', line = ' + line);
+            }
+        });
+} 
+</script>
+
+<body>
+<div id="title" class="title">
+Queries
+</div>
+
+<div id="page" class="page">
+	<div style="margin:10px 0;"></div>  
+	<div class="easyui-panel" title="SQL" style="width:500px">  
+	    <div style="padding:10px 0 10px 60px">  
+		    <form id="fm" method="post">  
+		        <table>  
+		            <tr>  
+		                <td><textarea name="query" id="query" style="height:60px;width:400px;"></textarea></td>  
+		            </tr>  
+		        </table>  
+		    </form>  
+	    </div>  
+	    <div style="background:#fafafa;text-align:center;padding:5px">  
+		    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="sendQuery()">Query</a>  
+	    </div>  
+	</div>
+	<br/>
+	Query Result:
+	<div>
+	<textarea id="resultset" style="width:800px;height:300px;">
+	</textarea>
+	</div>
+</div>
+
+</body>
+</html>

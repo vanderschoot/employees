@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>DEMO : HTML/CSS/JavaScript/Ajax/jQuery</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="menu/menu.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+	<script type="text/javascript" src="libs/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="libs/webtoolkit.base64.js"></script>
+	<script type="text/javascript" src="menu/menu.js" ></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+<div id="container" class="container">
+	<div class="header">
+		<div class="headerimage">
+			<img alt="header" src="images/header.png">
+		</div>
+		<div class="loginform">		
+				<div id="div-login" style="width: 300px;float: right;">
+					<form>
+						<div style="width:50%;float:left"><label style="width:50%;color:white">username: </label><input id="inp1-username" type="text" /></div>
+						<div style="width:50%;float:right"><label style="width:50%;color:white">password: </label><input id="inp1-password" type="password" /></div>
+						<div style="clear: both"><input type="button"  name="login" value="Login" onclick="loginREST()" />
+						<div style="width:75%;float:right">
+						<a href="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-register').removeClass('hide');$('.messages').html('');return true;">Registreer nieuw Account</a>  
+						<a href="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-passwordreminder').removeClass('hide');$('.messages').html('');return true;">Wachtwoord vergeten?</a>  
+						</div>
+						</div>
+						<div id="login-messages" class="messages" style="width: 100%;float: left">
+						</div>
+					</form>
+				</div>
+				<div id="div-register" class="hide" style="width: 300px;float: right;">
+					<form>
+						<div style="width:100%;float:left;color:white"><label style="width:50%">email: </label><input id="inp2-email" type="text" /></div>
+						<div style="width:100%;float:left;color:white"><label style="width:50%">username: </label><input id="inp2-username" type="text" /></div>
+						<div style="width:100%;float:right;color:white"><label style="width:50%">password: </label><input id="inp2-password" type="password" /></div>
+						<div style="width:100%;float:left;color:white"><label style="width:50%">repeat password: </label><input id="inp2-password2" type="password" /></div>
+						<input type="button"  name="register" value="Registreer" onclick="registerREST()" />
+						<a href="#" style="color:white" onclick="$('#div-login').removeClass('hide');$('#div-register').addClass('hide');$('.messages').html('');return true;">Account beschikbaar: Login </a>  
+						<div id="reg-messages" class="messages" style="width: 100%;float: left">
+						</div>
+					</form>
+				</div>
+				<div id="div-passwordreminder" class="hide" style="width: 300px;float: right;">
+					<form>
+						<div style="width:100%;float:left"><p style="color:white">If you forgot your password, you can ask a new one.</p></div>
+						<div style="width:100%;float:left"><label style="width:25%;color:white">email: </label><input id="inp3-email" type="text" /></div>
+						<div style="width:100%;float:left"><label style="width:50%;color:white">username: </label><input id="inp3-username" type="text" /></div>
+						<input type="button"  name="register" value="Verzoek" onclick="askpasswordREST()" />
+						<a href="#" style="color:white" onclick="$('#div-login').removeClass('hide');$('#div-passwordreminder').addClass('hide');$('.messages').html('');return true;">Account beschikbaar: Login </a>  
+						<div id="pwr-messages" class="messages" style="width: 100%;float: left">
+						</div>
+					</form>
+				</div>
+				<div id="div-logout" class="hide" style="width: 300px;float: right;">
+					<span id="usernameLoggedIn" style="padding-right:20px;color:white"></span>
+					<input type="button" name="logout" value="Loguit" onclick="logoutREST()"/>			
+				</div>
+		</div>
+	</div>
+	<div class="menu">
+		<ul class="toplevel">
+		<li><a href="home.html" target="pageframe">HOME</a></li>
+		<li><a href="#">Organization</a>
+		  <ul class="sublevel">
+		  <li><a href="departments/departments.html" target="pageframe" class="roleUser roleAdministrator">Departments</a></li>
+		  <li><a href="employees/employees.html" target="pageframe" class="roleUser roleAdministrator">Employees</a></li>
+		  </ul>
+		</li>
+		<li><a href="#">Settings</a>
+		  <ul class="sublevel">
+		  <li><a href="users/users.html" target="pageframe" class="roleAdministrator">Users</a></li>
+		  <li><a href="users/roles.html" target="pageframe" class="roleAdministrator">Roles</a></li>
+		  <li><a href="users/server.html" target="pageframe" class="roleAnonymous">Server URL</a></li>
+		  </ul>
+		</li>
+		<li><a href="#">Tools</a>
+		  <ul class="sublevel">
+		  <li><a href="tools/queries.html" target="pageframe" class="roleAdministrator">SQL</a></li>
+		  </ul>
+		</li>
+		<li><a href="#">Links</a>
+		  <ul class="sublevel">
+		  <li><a href="http://www.vdschoot.com" target="pageframe">VDSchoot (Blog)</a></li>
+		  <li><a href="http://www.jeasyui.com/" target="pageframe">EasyUI</a></li>
+		  <li><a href="http://jquery.com" target="pageframe">jQuery</a></li>
+		  </ul>
+		</li>
+		</ul>
+	</div>
+	<div id="content" class="content">
+		<iframe class= "pageframe" name="pageframe" src="home.html" frameborder="0" width="100%" height = "100%"></iframe>
+	</div>
+	<div class="push"></div>
+</div>
+<div id="footer" class="footer">
+Employees&Departments©
+</div>
+<form>
+<input name="serverhost" id="serverhost" type="hidden" value = "localhost">  
+<input name="serverport" id="serverport" type="hidden" value = "8080">  
+<input name="serverproject" id="serverproject" type="hidden" value = "employeesRESTH">  
+<input name="serverurl" id="serverurl" type="hidden" value="localhost:8080/employeesRESTH">  
+</form>
+</body>
+</html>

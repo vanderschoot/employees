@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+<title>Departments</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/default/easyui.css"/>  
+<link rel="stylesheet" type="text/css" href="../libs/easyui/themes/icon.css"/>  
+<script type="text/javascript" src="../libs/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="../libs/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<script type="text/javascript" src="departments.js"></script>
+</head>
+<body>
+<div id="title" class="title">
+Departments
+</div>
+
+<div id="page" class="page">
+
+<table id="dg" title="" class="easyui-datagrid" style="width:550px;height:auto"  
+        toolbar="#toolbar" fitColumns="true" singleSelect="true">  
+    <thead>  
+        <tr>  
+            <th field="departmentId">Id</th>  
+            <th field="name" width="50">Naam</th>  
+            <th field="address" width="50">Address</th>  
+            <th field="budget" width="50">Budget</th>  
+            <th field="employees" width="50" formatter="link2Employees"></th>  
+        </tr>  
+    </thead>  
+</table>  
+<div id="toolbar">  
+    <a id="btnnew"  href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newDepartment()">New Department</a>  
+    <a id="btnedit" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editDepartment()">Edit Department</a>  
+    <a id="btnremove" href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeDepartment()">Remove Department</a>  
+</div>  
+
+<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"  
+        closed="true" buttons="#dlg-buttons">  
+    <div class="ftitle">Department Information</div>  
+    <form id="fm" method="post">  
+        <div class="fitem">  
+            <label style="width:100px">Naam:</label>  
+            <input name="name" id="name" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width:100px">Adres:</label>  
+            <input name="address" id="address" class="easyui-validatebox" required="true">  
+        </div>  
+        <div class="fitem">  
+            <label style="width:100px">Budget:</label>  
+            <input name="budget" id="budget" class="easyui-validatebox">  
+        </div>  
+    </form>  
+</div>  
+<div id="dlg-buttons">  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveDepartment()">Save</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>  
+</div>  
+
+</div>
+
+
+</body>
+</html>
