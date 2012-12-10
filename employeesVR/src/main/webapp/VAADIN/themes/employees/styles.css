@@ -1,0 +1,83 @@
+@import url(../reindeer/styles.css);
+
+/* Setting for label texts with common static texts, like the homepage. */
+.v-label-labeltext {
+	font-family: Arial,Helvetica,Tahoma,Verdana,sans-serif;
+	font-size: large;
+	color: #464440;
+	line-height: 25px;
+	letter-spacing: 2px;
+}
+
+/* Setting for the title above Screens , on the right side of the area */
+.v-label-screenheader {
+	font-size: x-large;
+	font-weight: bold;
+	color: darkblue;
+}
+
+/* Setting for white large labels */
+.v-label-whitelarge {
+	font-size: large;
+	font-weight: bold;
+	color: white;
+}
+
+/* Setting for white Medium labels */
+.v-label-whitemedium {
+	font-size: medium;
+	color: white;
+}
+
+/* Setting for white X-large labels */
+.v-label-whiteXlarge {
+	font-size: x-large;
+	font-weight: bold;
+	color: white;
+}
+
+/* Setting for the content area of the Screens , on the right side of the area */
+.v-panel-content-screen  > div {
+      background: white;     
+}
+.v-ie6 .v-panel-content-screen {
+      background: white;     
+}
+
+/* Setting for the Header and menu on top of the area */
+.v-panel-content-header > div {
+      background-color: black;     
+}
+.v-ie6 .v-panel-content-header {
+      background-color: black;     
+}
+
+/* Settings for the vertical Navigation area on the left side of the area */ 
+
+.v-panel-content-navigator > div {
+      background-color: lightgrey;     
+}
+.v-ie6 .v-panel-content-navigator {
+      background-color: lightgrey;     
+}
+
+/* Settings for the general center part of the area with the navigator and Screens */
+
+.v-panel-content-center > div {
+      background-color: lightgrey;     
+}
+.v-ie6 .v-panel-content-center {
+      background-color: lightgrey;     
+}
+
+/* Settings for the footer part of the area */
+
+.v-panel-content-footer > div {
+	color: white;
+	background-color: black;     
+}
+
+.v-ie6 .v-panel-content-footer {
+	color: white;
+	background-color: black;     
+}
