@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="employeesSOAP">
+		<jta-data-source>jdbc/employeedb</jta-data-source>
+    	<non-jta-data-source>jdbc/employeedbNONJTA</non-jta-data-source>
+		<class>org.biz.employeesSOAP.entities.Department</class>
+		<class>org.biz.employeesSOAP.entities.Employee</class>
+		<class>org.biz.employeesSOAP.entities.Role</class>
+		<class>org.biz.employeesSOAP.entities.User</class>
+		<class>org.biz.employeesSOAP.entities.UserRole</class>
+		<properties>
+		   <property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.MySQLDictionary"/>
+		   <property name="employeedb" value="new://Resource?type=DataSource"/>
+		   <property name="employeedb.JdbcDriver" value="com.mysql.jdbc.Driver"/>
+		   <property name="employeedb.JdbcUrl" value="jdbc:mysql://localhost:3306/employeedb"/>
+		   <property name="employeedb.UserName" value="root"/>
+		   <property name="employeedb.Password" value="admin"/>
+		   <property name="employeedb.JtaManaged" value="true"/>
+	   	   <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+		</properties>
+	</persistence-unit>
+</persistence>
