@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  >
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="Departments"/>
+	</ui:define>
+	<ui:define name="navigationBar">
+		<h:commandLink action="/welcome" value="Home"/>
+        <h:outputText value=">"/>
+        <h:outputText value="Departments" styleClass="tituloForm"/>
+     </ui:define>
+	 <ui:define name="content"> 
+	 <h1>Departments</h1>
+	 <h:form id="form-table">
+	 
+	 <p:growl id="growlmessages"/>
+
+     <p:dataTable var="d" value="#{departmentBean.departmentsLazy}" paginator="true" rows="5"  
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                 rowsPerPageTemplate="5,10,15"  id="datatable" lazy="true">  
+   		<f:facet name="header">
+			Departments
+			<div align="right">
+			<p:commandLink id="createButton" update=":form-createupdate:panelgrid" title="Create" oncomplete="dlg.show()" process="@this">
+      			<h:outputText value="Create" /> 
+  			</p:commandLink ></div>
+		</f:facet>
+        <p:column headerText="Id" sortBy="#{d.departmentId}">  
+            <h:outputText value="#{d.departmentId}" />  
+        </p:column>  
+  
+        <p:column headerText="Name" sortBy="#{d.name}" >  
+            <h:outputText value="#{d.name}" />  
+        </p:column>  
+  
+        <p:column headerText="Address" sortBy="#{d.address}" >  
+            <h:outputText value="#{d.address}" />  
+        </p:column>  
+  
+        <p:column headerText="Budget" sortBy="#{d.budget}" >  
+            <h:outputText value="#{d.budget}" />  
+        </p:column>  
+        
+        <p:column headerText="Details">  
+	        <p:commandLink id="employeesButton" update=":center" action="#{departmentBean.showEmployees}" value="Employees->" process="@this">
+	         	<f:setPropertyActionListener value="#{d}" target="#{departmentBean.selectedDepartment}" />
+         	</p:commandLink>
+	        
+        </p:column>  
+        
+		<p:column headerText="Actions">
+         	<p:commandLink id="selectButton" update=":form-createupdate:panelgrid" title="Edit" oncomplete="dlg.show()" process="@this">
+      			<h:outputText value="Edit" /> 
+      			<f:setPropertyActionListener value="#{d}" target="#{departmentBean.selectedDepartment}" />
+  			</p:commandLink >
+			|
+  			<p:commandLink  id="showDialogButton" update=":form-delete:confirmDialog" title="Delete" oncomplete="confirmation.show()" process="@this">
+  				<h:outputText value="Delete" />  
+  				<f:setPropertyActionListener value="#{d}" target="#{departmentBean.selectedDepartment}" />
+  			</p:commandLink >
+        				
+		</p:column>
+        
+    </p:dataTable>  
+  
+	</h:form> 
+	
+	<p:dialog header="Create/Update" widgetVar="dlg" resizable="false">  	
+	<h:form id="form-createupdate">
+	<p:panel id="panel-createupdate">
+	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
+	<p:panelGrid columns="3" id="panelgrid" >                   
+        <h:outputLabel value="Name:" for="name" />                    
+        <p:inputText label="Name" id="name" value="#{departmentBean.selectedDepartment.name}" title="name" required="true" 
+        	requiredMessage="Input is required">
+        </p:inputText>
+        <p:message for="name" display="icon"/>
+       
+        <h:outputLabel value="Address" for="address" />                    
+        <p:inputText label="Address" id="address" value="#{departmentBean.selectedDepartment.address}" title="address" required="true" 
+        	requiredMessage="Input is required">
+        </p:inputText>
+        <p:message for="address" display="icon"/>
+       
+        <h:outputLabel value="Budget" for="budget" />                    
+        <p:inputText label="Budget" id="budget" value="#{departmentBean.selectedDepartment.budget}" title="budget" required="true" 
+        	requiredMessage="Input is required">
+        </p:inputText>
+        <p:message for="budget" display="icon"/>
+		
+        <f:facet name="footer">  
+	        <p:commandButton value="Save" icon="ui-icon-check"  actionListener="#{departmentBean.createOrUpdateDepartment}" update=":form-table:datatable,panelgrid,:form-table:growlmessages,form-createupdate:messages"  oncomplete="closedialog(xhr, status, args)"/>  
+	        <p:commandButton value="Cancel" immediate="true" icon="ui-icon-cancel" process="@this" actionListener="#{departmentBean.clearDepartment}" update="panelgrid,:form-table:growlmessages,form-createupdate:messages" style="margin:5px;" oncomplete="dlg.hide();"/>
+	    </f:facet> 
+    </p:panelGrid>
+    </p:panel>
+	</h:form>
+	</p:dialog>  
+	
+	<h:form id="form-delete">
+		<p:confirmDialog id="confirmDialog" header="Confirm Delete" severity="alert" widgetVar="confirmation">  
+	              <f:facet name="message">
+				<h:outputText value="Delete?" />
+			</f:facet>
+	                 
+	        <p:commandButton id="confirm" value="Yes" oncomplete="confirmation.hide()"  update=":form-table:datatable,:form-table:growlmessages"
+	                     actionListener="#{departmentBean.deleteDepartment}"/>  
+	        <p:commandButton id="decline" value="No" onclick="confirmation.hide()" type="button" />   
+	                 
+		</p:confirmDialog>  
+	</h:form>
+	
+
+	<script type="text/javascript">  
+    function closedialog(xhr, status, args) {  
+        if(!args.validationFailed) {  
+            dlg.hide();  
+        }  
+    }  
+	</script> 
+
+	</ui:define>
+	
+	</ui:composition>
+
+</html>
