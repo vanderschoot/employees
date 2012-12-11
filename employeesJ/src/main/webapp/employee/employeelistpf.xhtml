@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  >
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="Employees"/>
+	</ui:define>
+	<ui:define name="navigationBar">
+		<h:commandLink action="/welcome" value="Home"/>
+        <h:outputText value=">"/>
+		<h:commandLink action="/department/departmentlistpf" value="Departments"/>
+        <h:outputText value=">"/>
+        <h:outputText value="Employees" styleClass="tituloForm"/>
+     </ui:define>
+	 <ui:define name="content"> 
+	 <h1>Employees</h1>
+	 <h:form id="form-table">
+	 
+	 <p:growl id="growlmessages"/>
+
+     <p:dataTable var="d" value="#{employeeBean.employeesLazy}" paginator="true" rows="5"  
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                 rowsPerPageTemplate="5,10,15"  id="datatable" lazy="true">  
+   		<f:facet name="header">
+			Employees (department #{employeeBean.selectedDepartment.name})
+			<div align="right">
+			<p:commandLink id="createButton" update=":form-createupdate:panelgrid" title="Create" oncomplete="dlg.show()" process="@this">
+      			<h:outputText value="Create" /> 
+  			</p:commandLink >
+  			| 
+  			<p:commandLink id="ajax" update="datatable" actionListener="#{employeeBean.toggleShowAll}" style="margin-right:20px;">  
+        		<h:outputText value="Show All" />  
+    		</p:commandLink>  
+  			</div>
+		</f:facet>
+        <p:column headerText="Id" sortBy="#{d.employeeId}" >  
+            <h:outputText value="#{d.employeeId}" />  
+        </p:column>  
+  
+        <p:column headerText="First Name" sortBy="#{d.firstName}" >  
+            <h:outputText value="#{d.firstName}" />  
+        </p:column>  
+  
+        <p:column headerText="Last Name" sortBy="#{d.lastName}" >  
+            <h:outputText value="#{d.lastName}" />  
+        </p:column>  
+ 
+        <p:column headerText="Birtdate" sortBy="#{d.birthDate}" >  
+            <h:outputText value="#{d.birthDate}">  
+	            <f:convertDateTime type="date" pattern="dd-MM-yyyy" timeZone="#{Application.timeZone}"/>
+            </h:outputText>
+        </p:column>  
+  
+        <p:column headerText="Department" sortBy="#{d.department.name}" >  
+            <h:outputText value="#{d.department.name}" />  
+        </p:column>  
+         
+		<p:column>
+         	<p:commandLink id="selectButton" update=":form-createupdate:panelgrid" title="Edit" oncomplete="dlg.show()" process="@this">
+      			<h:outputText value="Edit" /> 
+      			<f:setPropertyActionListener value="#{d}" target="#{employeeBean.selectedEmployee}" />
+  			</p:commandLink >
+			|
+  			<p:commandLink  id="showDialogButton" update=":form-delete:confirmDialog" title="Delete" oncomplete="confirmation.show()" process="@this">
+  				<h:outputText value="Delete" />  
+  				<f:setPropertyActionListener value="#{d}" target="#{employeeBean.selectedEmployee}" />
+  			</p:commandLink >
+        				
+		</p:column>
+        
+    </p:dataTable>  
+  
+	</h:form> 
+	
+	<p:dialog header="Create/Update" widgetVar="dlg" resizable="false">  	
+	<h:form id="form-createupdate">
+	<p:panel id="panel-createupdate">
+	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
+	<p:panelGrid columns="3" id="panelgrid" >                   
+        <h:outputLabel value="FirstName:" for="firstname" />                    
+        <p:inputText label="FirstName" id="firstname" value="#{employeeBean.selectedEmployee.firstName}" title="firstname" required="true" 
+        	requiredMessage="Input is required">
+        </p:inputText>
+        <p:message for="firstname" display="icon"/>
+       
+        <h:outputLabel value="LastName:" for="lastname" />                    
+        <p:inputText label="LastName:" id="lastname" value="#{employeeBean.selectedEmployee.lastName}" title="lastname" required="true" 
+        	requiredMessage="Input is required">
+        </p:inputText>
+        <p:message for="lastname" display="icon"/>
+       
+        <h:outputLabel value="BirthDate" for="birthDate" />
+        
+        <p:calendar value="#{employeeBean.selectedEmployee.birthDate}" id="birthDate" navigator="true" pattern="dd-MM-yyyy" timeZone="#{Application.timeZone}"/>
+        <p:message for="birthDate" display="icon"/>
+
+        <h:outputLabel value="Department" for="department" />                    
+        <p:selectOneMenu id="department" value="#{employeeBean.selectedEmployee.department}" title="Department">  
+            <f:selectItems value="#{departmentBean.departments}" var="dep" itemLabel="#{dep.name}" itemValue="#{dep}"/>  
+        </p:selectOneMenu>  
+
+        <f:facet name="footer">  
+	        <p:commandButton value="Save" icon="ui-icon-check"  actionListener="#{employeeBean.createOrUpdateEmployee}" update=":form-table:datatable,panelgrid,:form-table:growlmessages,form-createupdate:messages"  oncomplete="closedialog(xhr, status, args)"/>  
+	        <p:commandButton value="Cancel" immediate="true" icon="ui-icon-cancel" process="@this" actionListener="#{employeeBean.clearEmployee}" update="panelgrid,:form-table:growlmessages,form-createupdate:messages" style="margin:5px;" oncomplete="dlg.hide();"/>
+	    </f:facet> 
+    </p:panelGrid>
+    </p:panel>
+	</h:form>
+	</p:dialog>  
+	
+	<h:form id="form-delete">
+		<p:confirmDialog id="confirmDialog" header="Confirm Delete" severity="alert" widgetVar="confirmation">  
+	              <f:facet name="message">
+				<h:outputText value="Delete?" />
+			</f:facet>
+	                 
+	        <p:commandButton id="confirm" value="Yes" oncomplete="confirmation.hide()"  update=":form-table:datatable,:form-table:growlmessages"
+	                     actionListener="#{employeeBean.deleteEmployee}"/>  
+	        <p:commandButton id="decline" value="No" onclick="confirmation.hide()" type="button" />   
+	                 
+		</p:confirmDialog>  
+	</h:form>
+	
+	
+	
+	<script type="text/javascript">  
+    function closedialog(xhr, status, args) {  
+        if(!args.validationFailed) {  
+            dlg.hide();  
+        }  
+    }  
+	</script> 
+
+	</ui:define>
+	
+	</ui:composition>
+
+</html>

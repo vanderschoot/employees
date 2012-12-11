@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mycomps="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            <ui:insert name="pageTitle">
+                <h:outputText value="Title"></h:outputText>
+            </ui:insert>
+        </title>
+        <h:outputScript     library="js" name="menu.js" target="head"/>
+        <h:outputStylesheet library="css" name="appBlueSkin.css"/>
+        <h:outputStylesheet library="css" name="common.css"/>
+        <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+        </style>
+    </h:head>
+    <h:body>
+    	<p:layout fullPage="true" stateful="true">
+    	<p:layoutUnit id="top" position="north" size="250">
+		    <h:graphicImage  value="#{resource['images:header.png']}"></h:graphicImage>		
+		    <mycomps:menu/>
+			<h:form id="navigationBar">
+				<div class="navBarClass">
+					<ui:insert name="navigationBar"></ui:insert>
+				</div>
+			</h:form>
+		</p:layoutUnit>
+		<p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
+             <p:accordionPanel multiple="true" dynamic="true" activeIndex="x">
+                 <p:tab title="Objects">
+                     <br />
+ 					 <p:commandLink action="/department/departmentlistpf" value="Departments"/><br />
+ 					 <p:commandLink action="/employee/employeelistpf" value="Employees"/>
+                     <br />
+                 </p:tab>
+                 <p:tab title="Links">
+	                 <h:outputLink value="http://javaserverfaces.java.net/" >JSF</h:outputLink><br/>
+	                 <h:outputLink value="http://www.primefaces.org" >PrimeFaces</h:outputLink>
+                 </p:tab>
+             </p:accordionPanel>
+		</p:layoutUnit>
+		<p:layoutUnit id="right" position="east" size="250" header="Info" resizable="true" closable="true" collapsible="true" style="text-align:center">
+             <p:commandButton id="basic" value="Help" onclick="dlg1.show();" type="button" style="margin-top:10px"/>
+        </p:layoutUnit>
+		
+		<p:layoutUnit id="center" position="center" size="60">			
+				<ui:insert name="content"></ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit id="bottom" position="south" size="60">
+				<ui:include src="./footer.xhtml" />
+		</p:layoutUnit>		
+		</p:layout>
+		
+		 <p:dialog header="Help" widgetVar="dlg1" modal="true">
+                <h:outputText value="Help is available on:" /><br/>
+	            <h:outputLink value="http://javaserverfaces.java.net/" >JSF</h:outputLink><br/>
+	            <h:outputLink value="http://www.primefaces.org" >PrimeFaces</h:outputLink>
+         </p:dialog>
+
+		
+   </h:body>
+</html>
