@@ -40,6 +40,13 @@ public class SecurityServiceImpl {
 
 	public SecurityServiceImpl() {		
 		System.out.println("REST Webservice SecurityServiceImpl created");
+    	System.out.println("REST Webservice DepartmentServiceImpl created");
+		//-----Remove the following code if the HyperSQL Database will be replaced by a real database
+		Database database = new Database();
+	    if (!database.createDatabase()) {
+			System.out.println("REST Webservice DepartmentServiceImpl could not create HyperSQL database");
+	    }
+	    //-----
 	}	
 
     @Path("/logout")
