@@ -3,7 +3,7 @@
 	<persistence-unit name="employeesREST">
 		<jta-data-source>jdbc/employeedb</jta-data-source>
     	<non-jta-data-source>jdbc/employeedbNONJTA</non-jta-data-source>
-		<class>org.biz.employeeREST.entities.Department</class>
+		<class>org.biz.employeesREST.entities.Department</class>
 		<class>org.biz.employeesREST.entities.Employee</class>
 		<class>org.biz.employeesREST.entities.Role</class>
 		<class>org.biz.employeesREST.entities.User</class>
