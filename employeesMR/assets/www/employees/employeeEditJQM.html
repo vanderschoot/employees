@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<meta charset="utf-8"/>
+	<title>Mobile Demo</title> 
+</head> 
+
+<body  data-theme="a"> 
+
+<div data-role="page" id="pgEmployeeEdit" data-add-back-btn="true">
+	<div data-role="header">
+  		<a id="cancel" href="../indexJQM.html" data-icon="home" class="ui-btn-left">Home</a>
+  		<a id="canceledit" href="#" data-icon="back" class="ui-btn-left">Cancel</a>
+		<h1>Employee Details</h1>
+		<a id="edit" href="" data-theme="b" data-icon="check" class="ui-btn-right">Edit</a>
+	</div><!-- /header -->
+
+	<div data-role="content">
+	<form id="fmEmployeeEdit" method="post">
+		<label for="firstName">Voornaam:</label>
+		<input type="text" name="firstName" id="firstName" data-mini="true" disabled="disabled" style="opacity:1;"/>
+		<label for="lastName">Achternaam:</label>
+		<input type="text" name="lastName" id="lastName" data-mini="true" disabled="disabled" style="opacity:1;"/>
+		<label for="birthDate">Geboortedatum:</label>
+		<input type='date' name='birthDate' id='birthDate' data-role='datebox' data-options='{"mode":"flipbox"}' data-mini='true' data-theme='c' style='opacity:1;'/>
+		<div data-role="fieldcontain">
+	   		<label for="department" class="select">Afdeling:</label>
+	   		<select name="department" id="department">
+	   		</select>
+		</div>
+	</form>
+	 <span id="msg"></span>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<a id="delete" data-icon="delete" data-transition="slideup" data-rel="dialog" class="ui-btn-left">Delete</a>
+		<H1>Employees<sup>©</sup></H1>
+		<a id="submit" href="" data-theme="b" data-icon="check" class="ui-btn-right">Save</a>
+	</div><!-- /footer -->
+	
+	<script>	
+	$('#pgEmployeeEdit').on('pageinit', getEmployeeJQM);	
+		
+    $("#submit").on("click", function(event) {
+        if ($("#firstName").val() != "" &&  $("#lastName").val() != "") {
+          saveEmployee();
+          //$.mobile.changePage("employeesJQM.html");
+          return false;
+        } else {
+       	  if (!$("#firstName").val()) {$("#firstName").addClass("error");} else {$("#firstName").removeClass("error");};
+       	  if (!$("#lastName").val()) {$("#lastName").addClass("error");} else {$("#lastName").removeClass("error");};
+          alert("Input verplicht!!!");
+	      $("#msg").text("Not valid!").show().fadeOut(5000);
+          return false;
+        }
+    });  	
+
+	$("#delete").on("click", function(event) {
+        deleteEmployee();
+        $.mobile.changePage("employeesJQM.html");
+        return false;
+    });  
+    // Zet initieel op display mode
+	$('#pgEmployeeEdit').on('pageinit', function() {
+		$("#canceledit").hide();
+		$("#submit").hide();
+		$("#delete").hide();
+	});		
+
+    // Zet op edit mode na click edit button
+    $("#edit").on("click", function(event) {
+    	$('input').textinput('enable');	
+    	//$('input').datebox('enable');	
+    	$("#canceledit").show();
+    	$("#submit").show();
+		$("#delete").show();
+    	$("#edit").hide();
+    	$("#cancel").hide();
+        return true;
+    });  	
+    // Zet weer op display mode na click cancel button in edit mode
+    $("#canceledit").on("click", function(event) {
+    	$('input').textinput('disable');	
+    	//$('input').datebox('disable');	
+    	$("#canceledit").hide();
+    	$("#submit").hide();
+		$("#delete").hide();
+    	$("#edit").show();
+    	$("#cancel").show();
+        return true;
+    }); 
+    // Zet op add new record mode, als selectedEmployeeId=null
+    $('#pgEmployeeEdit').on('pageinit', function() {	
+	    if (!selectedEmployeeId) 	{
+		    $("#edit").trigger('click'); //trigger edit button
+			$("#delete").hide();         //hide niet relevante buttons
+	    	$("#canceledit").hide();
+	    	$("#cancel").show();		 //show gewone cancel button		
+	    }
+    });
+	jQuery.extend(jQuery.mobile.datebox.prototype.options, {
+	    'dateFormat': 'dd-mm-YYYY',
+	    'headerFormat': 'dd-mm-YYYY',
+	});
+
+    </script>
+	
+</div><!-- /page -->
+
+
+</body>
+</html>

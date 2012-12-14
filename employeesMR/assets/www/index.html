@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>Phonegap Demo</title>
+  <meta name="viewport" content="width=device-width, initialscale=1.0, user-scalable=no"></meta>
+  <link rel="stylesheet" type="text/css" media="screen" href="demos/demo.css" />
+  <script src="libs/cordova-2.1.0.js" type="text/javascript"></script>
+  <script src="main.js" type="text/javascript"></script>
+  <script type="text/javascript">
+     document.addEventListener("DOMContentLoaded", onDocumentReady, true);
+     function onDocumentReady(){
+        //navigator.notification.alert("Hello, welcome to the PhoneGap world!!");
+		alert("PhoneGap is working!!");
+ 		document.getElementById("btnHello").addEventListener("click", sayHello, false);
+     }
+     function sayHello() {
+//    	 navigator.notification.alert("Hello dear Phonegap fan!!!", function(){}, "Hello");
+    	 alert("Hello dear Phonegap fan!!!");
+     }
+  </script>
+  </head>
+  <body>
+  <div id="main" class="box rounded">
+       <h1>Welcome to PhoneGap</h1>
+       <button id="btnHello">Say Hello</button>
+       <br/>
+       <a href="demos/departments.html">departments (Ajax)</a>
+       <br/>
+       <a href="demos/departmentsJQ.html">departments (jQuery Ajax)</a>
+       <br/>
+       <a href="indexJQM.html">Home jQuery Mobile</a>
+  </div>
+  </body>
+</html>

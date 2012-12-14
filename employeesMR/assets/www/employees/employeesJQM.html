@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<meta charset="utf-8"/>
+	<title>Employees</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+	<link rel="stylesheet" href="../libs/jquery.mobile-1.2.0.min.css" />
+	<script src="../libs/jquery-1.8.2.min.js"></script>
+	<script src="../main.js"></script>
+	<script src="employees.js"></script>
+	<script src="../libs/jquery.mobile-1.2.0.min.js"></script>
+	<script src="../libs/cordova-2.1.0.js" type="text/javascript"></script>
+</head> 
+<body  data-theme="b"> 
+<div id="pgEmployeesJQM" data-role="page" data-add-back-btn="true">
+
+	<div data-role="header" >
+  		<a href="../indexJQM.html" data-icon="home" class="ui-btn-left">Home</a>
+ 		<h1>Employees</h1>
+  		<a href="#" data-icon="add" class="ui-btn-right" id="add">Add</a>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+       <ul id="emplist" data-role="listview" data-filter="true" data-autodividers="true">
+       </ul>	
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-position="fixed">
+		<h1>Employees<sup>©</sup></h1>
+	</div><!-- /footer -->
+
+	<script>
+	$("#pgEmployeesJQM").on("pageinit", getEmployeeListJQM);
+	$("#add").on("vclick", function (event) {
+		selectedEmployeeId = null;
+        $.mobile.changePage("employeeEditJQM.html");
+        return false;
+	});
+	</script>
+
+</div><!-- /page -->
+
+
+</body>
+</html>
