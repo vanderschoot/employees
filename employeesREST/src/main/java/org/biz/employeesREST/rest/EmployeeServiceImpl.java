@@ -1,42 +1,31 @@
 package org.biz.employeesREST.rest;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.biz.employeesREST.entities.Department;
 import org.biz.employeesREST.entities.Employee;
@@ -59,8 +48,15 @@ public class EmployeeServiceImpl {
     @RolesAllowed({"User"})
     public String create(	@QueryParam("firstName") String firstname,
 					    	@QueryParam("lastName") String lastname,
-	                        @QueryParam("birthDate") @DefaultValue("1900/01/01") Date birthdate,
+	                        @QueryParam("birthDate") @DefaultValue("1900-01-01") String birthdateString,
 	                        @QueryParam("departmentId") @DefaultValue("") int departmentId) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthdate = null;
+		try {
+			birthdate = formatter.parse(birthdateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
     	Employee employee = new Employee();
     	employee.setFirstName(firstname);
     	employee.setLastName(lastname);
@@ -83,8 +79,15 @@ public class EmployeeServiceImpl {
     @POST
     public Response createu(@QueryParam("firstName") String firstname,
 					    	@QueryParam("lastName") String lastname,
-	                        @QueryParam("birthDate") @DefaultValue("1900/01/01") Date birthdate,
+	                        @QueryParam("birthDate") @DefaultValue("1900/01/01") String birthdateString,
 	                        @QueryParam("departmentId") @DefaultValue("") int departmentId) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthdate = null;
+		try {
+			birthdate = formatter.parse(birthdateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
     	Employee employee = new Employee();
     	employee.setFirstName(firstname);
     	employee.setLastName(lastname);
@@ -253,6 +256,22 @@ public class EmployeeServiceImpl {
         
         //return Response.status(200).type(MediaType.APPLICATION_JSON).entity(emp.copy()).build();
     }
+    
+    @Path("/showu/{id}")
+    @POST
+    public Employee findu(@PathParam("id") int id) {
+        System.out.println("Find, param = " + id);
+    	Employee emp = em.find(Employee.class, id);
+        System.out.println("Find Finished");
+        if (emp == null) {
+        	System.out.println("Find, employee = null");
+            return null;
+        }
+        System.out.println("Find emp not null");
+        System.out.println("Find, employee = " + emp.copy().getFirstName() + emp.copy().getLastName());
+        return emp.copy();
+    }
+
 
     @Path("/delete/{id}")
     @POST
@@ -290,10 +309,17 @@ public class EmployeeServiceImpl {
     public String update(	@PathParam("id") int id,
                    			@QueryParam("firstName") String firstname,
                    			@QueryParam("lastName") String lastname,
-                   			@QueryParam("birthDate") Date birthdate,
+                   			@QueryParam("birthDate") String birthdateString,
 	                        @QueryParam("departmentId") @DefaultValue("0") int departmentId) {
 
     	System.out.println("update : " + firstname + " " + lastname);
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthdate = null;
+		try {
+			birthdate = formatter.parse(birthdateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
         
         Employee emp = em.find(Employee.class, id);
         if (emp == null) {
@@ -324,10 +350,17 @@ public class EmployeeServiceImpl {
     public Response updateu(@PathParam("id") int id,
                    			@QueryParam("firstName") String firstname,
                    			@QueryParam("lastName") String lastname,
-                   			@QueryParam("birthDate") Date birthdate,
+                   			@QueryParam("birthDate") String birthdateString,
 	                        @QueryParam("departmentId") @DefaultValue("0") int departmentId) {
 
     	System.out.println("update : " + firstname + " " + lastname);
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthdate = null;
+		try {
+			birthdate = formatter.parse(birthdateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
         
         Employee emp = em.find(Employee.class, id);
         if (emp == null) {

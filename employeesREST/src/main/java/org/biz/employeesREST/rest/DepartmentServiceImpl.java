@@ -171,11 +171,48 @@ public class DepartmentServiceImpl {
         System.out.println("dep cblist create return : " + res);
         return res;
     }
+ 	
+ 	@Path("/cblistu")
+    @POST
+    public String cblistu(	@QueryParam("first") @DefaultValue("0") int first,
+    						@QueryParam("max") @DefaultValue("20") int max) {
+ 		
+ 		System.out.println("dep cblist list!!!!");
+        List<CBWrapper> departments = new ArrayList<CBWrapper>();
+        List<Department> found = em.createQuery("select d from Department d",Department.class)
+        		.setFirstResult(first).setMaxResults(max).getResultList();
+       
+        System.out.println("dep cblist list2!!!!");
+     	
+        for (Department d : found) {
+        	departments.add(new CBWrapper(d.getDepartmentId(), d.getName()));
+            System.out.println("dep cblist add : " + d.getDepartmentId() + " / " + d.getName());
+        }
+                
+        String res = new Gson().toJson(departments);
+        System.out.println("dep cblist create return : " + res);
+        return res;
+    }
 	
     @Path("/show/{id}")
     @POST
     @RolesAllowed({"Administrator", "User"})
     public Department find(@PathParam("id") int id) {
+        System.out.println("Find, param = " + id);
+        Department dep = em.find(Department.class, id);
+        System.out.println("Find Finished");
+        if (dep == null) {
+        	System.out.println("Find, department = null");
+            return null;
+        }
+        System.out.println("Find emp not null");
+        System.out.println("Find, department = " + dep.copy().getName());
+        return dep.copy();        
+    }
+    
+    @Path("/showu/{id}")
+    @POST
+    public Department findu(@PathParam("id") int id) {
         System.out.println("Find, param = " + id);
         Department dep = em.find(Department.class, id);
         System.out.println("Find Finished");
