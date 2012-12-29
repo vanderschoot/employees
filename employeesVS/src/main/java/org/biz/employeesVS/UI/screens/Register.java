@@ -33,11 +33,12 @@ public class Register extends Window {
         addComponent(form);
         setWidth(300, Sizeable.UNITS_PIXELS);
         setHeight(350, Sizeable.UNITS_PIXELS);
-        dataModel = app.getDataModel();
-        ssf = dataModel.getSoapServiceFactory();
         
         form.setWriteThrough(false);
         
+        dataModel = app.getDataModel();
+        ssf = dataModel.getSoapServiceFactory();
+
         /* Init form footer with buttons */
 		Button btnOK     = new Button("OK");
 		Button btnCancel = new Button("Cancel");
@@ -66,6 +67,8 @@ public class Register extends Window {
                 if (form.isValid()) {
                 	form.commit();
                 	try {
+                        dataModel = app.getDataModel();
+                        ssf = dataModel.getSoapServiceFactory();
         				ReturnStatus sts = ssf.register(
         						form.getField("userName").getValue().toString(),
         						form.getField("password").getValue().toString(),
