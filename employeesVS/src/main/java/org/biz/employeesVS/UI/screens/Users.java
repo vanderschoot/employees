@@ -20,7 +20,6 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DefaultFieldFactory;
@@ -542,9 +541,15 @@ public class Users extends CustomComponent {
                 Field field = super.createField(item, propertyId, uiContext);
                                                                 
                 if (propertyId.equals("RoleId")) {
-                	ComboBox select = new ComboBox("Role", roleContainer);
-                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_PROPERTY);   
-                	select.setItemCaptionPropertyId("name");
+                	Select select = new Select("Role");
+                	for (int i=0; i < roleContainer.size();i++) {
+                		Item depitm = roleContainer.getItem(roleContainer.getIdByIndex(i));
+                		Integer depid = (Integer) depitm.getItemProperty("ID").getValue();
+                		String depname = depitm.getItemProperty("name").getValue().toString();
+                		select.addItem(depid);
+                		select.setItemCaption(depid, depname);
+                	}
+                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_EXPLICIT);                   	
                 	select.setNullSelectionAllowed(false);
                  	return select;
                 } else if (propertyId.equals("UserId")) {
@@ -578,8 +583,7 @@ public class Users extends CustomComponent {
                 if (roleForm.isValid()) {
                 	// roleForm.commit();
                 	try {
-    					Object roleItemId = roleForm.getField("RoleId").getValue();
-    					Object RoleId = roleContainer.getItem(roleItemId).getItemProperty("ID");
+    					Integer RoleId = (Integer) roleForm.getField("RoleId").getValue();
             			ReturnStatus sts = dataModel.addUserRole(RoleId.toString(), userId);
             			if (sts.getMessage() != null) {
             				System.out.println("set ID to added item for tempItemId = " + tempItemId +  " , in roleTable with ID = " + sts.getMessage());
