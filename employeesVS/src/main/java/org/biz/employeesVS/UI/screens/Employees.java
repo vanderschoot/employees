@@ -317,9 +317,15 @@ public class Employees extends CustomComponent {
                 Field field = super.createField(item, propertyId, uiContext);
 
                 if (propertyId.equals("DepartmentId")) {
-                	ComboBox select = new ComboBox("Department", departmentContainer);
-                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_PROPERTY);   
-                	select.setItemCaptionPropertyId("name");
+                	Select select = new Select("Department");
+                	for (int i=0; i < departmentContainer.size();i++) {
+                		Item depitm = departmentContainer.getItem(departmentContainer.getIdByIndex(i));
+                		Integer depid = (Integer) depitm.getItemProperty("ID").getValue();
+                		String depname = depitm.getItemProperty("name").getValue().toString();
+                		select.addItem(depid);
+                		select.setItemCaption(depid, depname);
+                	}
+                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_EXPLICIT);   
                 	select.setNullSelectionAllowed(false);
                  	return select;
                 } else if (propertyId.equals("birthDate")) {

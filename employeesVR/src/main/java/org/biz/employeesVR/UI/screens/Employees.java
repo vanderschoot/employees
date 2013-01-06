@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import org.biz.employeesVR.UI.Navigator;
 import org.biz.employeesVR.data.DataModel;
 import org.biz.employeesVR.data.ReturnStatus;
+import org.biz.employeesVR.data.DTO.Department;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -144,8 +145,10 @@ public class Employees extends CustomComponent {
 		        	while(it.hasNext()){
 		        		Object ItemId = it.next();
 		        		Item departm = departmentContainer.getItem(ItemId);
+		        		Object obj = departm.getItemProperty("ID").getValue();
 		        		if (departm.getItemProperty("ID").getValue().equals(DepartmentId)) {
 		        			label.setValue(departm.getItemProperty("name"));
+		        			System.out.println("Set label, emp" + employee.getItemProperty("firstName")+ " / label = " + label.getValue().toString());
 		        		}
 		        	}		        	
 	        	}
@@ -286,13 +289,6 @@ public class Employees extends CustomComponent {
 	} 
 
 	private void createForm() {
-        /*
-         * Enable buffering so that commit() must be called for the form before
-         * input is written to the data source. (Form input is not written
-         * immediately through to the underlying object.)
-         */
-        //form.setWriteThrough(false);
-        
         /* Init form footer with buttons */
 		Button btnOK     = new Button("OK");
 		Button btnCancel = new Button("Cancel");
@@ -317,9 +313,15 @@ public class Employees extends CustomComponent {
                 Field field = super.createField(item, propertyId, uiContext);
 
                 if (propertyId.equals("DepartmentId")) {
-                	ComboBox select = new ComboBox("Department", departmentContainer);
-                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_PROPERTY);   
-                	select.setItemCaptionPropertyId("name");
+                	Select select = new Select("Department");
+                	for (int i=0; i < departmentContainer.size();i++) {
+                		Item depitm = departmentContainer.getItem(departmentContainer.getIdByIndex(i));
+                		Integer depid = (Integer) depitm.getItemProperty("ID").getValue();
+                		String depname = depitm.getItemProperty("name").getValue().toString();
+                		select.addItem(depid);
+                		select.setItemCaption(depid, depname);
+                	}
+                	select.setItemCaptionMode(Select.ITEM_CAPTION_MODE_EXPLICIT);   
                 	select.setNullSelectionAllowed(false);
                  	return select;
                 } else if (propertyId.equals("birthDate")) {
@@ -382,7 +384,8 @@ public class Employees extends CustomComponent {
                 									form.getField("firstName").getValue().toString(), 
                 									form.getField("lastName").getValue().toString(),
                 									utilDate,
-                									form.getField("DepartmentId").getValue().toString());
+                									form.getField("DepartmentId").getValue().toString()
+                									);
                 			if (sts.getMessage() != null) {
                 				Item item = employeeContainer.getItem(tempItemId);
                 				item.getItemProperty("ID").setValue(sts.getMessage());
@@ -393,9 +396,10 @@ public class Employees extends CustomComponent {
                 										form.getField("firstName").getValue().toString(), 
                 										form.getField("lastName").getValue().toString(),
                 										utilDate,
-                										form.getField("DepartmentId").getValue().toString());
+                										form.getField("DepartmentId").getValue().toString()
+                										);
                 		}
-                		//table.setContainerDataSource(employeeContainer);
+                		table.setContainerDataSource(employeeContainer);
     		            tableAction = "";
 					} catch (UnsupportedOperationException e) {
 						e.printStackTrace();
