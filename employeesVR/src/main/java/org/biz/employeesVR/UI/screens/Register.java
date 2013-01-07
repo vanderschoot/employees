@@ -34,7 +34,6 @@ public class Register extends Window {
         setWidth(300, Sizeable.UNITS_PIXELS);
         setHeight(350, Sizeable.UNITS_PIXELS);
         dataModel = app.getDataModel();
-        rsf = dataModel.getRestServiceFactory();
         
         form.setWriteThrough(false);
         
@@ -63,6 +62,7 @@ public class Register extends Window {
         btnOK.addListener(new ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
+		        rsf = dataModel.getRestServiceFactory();
                 if (form.isValid()) {
                 	form.commit();
                 	try {
@@ -71,7 +71,7 @@ public class Register extends Window {
         						form.getField("password").getValue().toString(),
         						form.getField("email").getValue().toString());
         				if (sts.isSucces()) {					
-        					app.getHeader().LoggedIn();
+        					//app.getHeader().LoggedIn();
         					app.showNotification("Your Registration has been sent!");
         					lblRegister.setValue("Registration sent!");
         				} else {

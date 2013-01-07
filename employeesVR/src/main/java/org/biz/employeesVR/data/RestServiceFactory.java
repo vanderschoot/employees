@@ -80,7 +80,7 @@ public class RestServiceFactory {
 				return null;   	
 		    }	
 		} catch (Exception e) {
-			app.showError("Verbinding met server mislukt (Webservice fout)!!!");
+			app.showError("Verbinding met server mislukt (Webservice fout " + e.getMessage() + ")");
 			return null;   	
 		}
 	}

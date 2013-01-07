@@ -74,7 +74,7 @@ public class Register extends Window {
         						form.getField("password").getValue().toString(),
         						form.getField("email").getValue().toString());
         				if (sts.isSucces()) {					
-        					app.getHeader().LoggedIn();
+        					//app.getHeader().LoggedIn();
         					app.showNotification("Your Registration has been sent!");
         					lblRegister.setValue("Registration sent!");
         				} else {
