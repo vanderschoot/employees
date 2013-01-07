@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webservices version="1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns="http://www.jboss.com/xml/ns/javaee" 
+       xsi:schemalocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_webservices_1_0.xsd">
+  <context-root>employeesSOAPJB/webservices</context-root>
+  <port-component>
+    <ejb-name>DepartmentServiceWS</ejb-name>
+    <port-component-uri>DepartmentServiceWS</port-component-uri>
+  </port-component>
+  <port-component>
+    <ejb-name>EmployeeServiceWS</ejb-name>
+    <port-component-uri>EmployeeServiceWS</port-component-uri>
+  </port-component>
+  <port-component>
+    <ejb-name>UserServiceWS</ejb-name>
+    <port-component-uri>UserServiceWS</port-component-uri>
+  </port-component>
+  <port-component>
+    <ejb-name>RoleServiceWS</ejb-name>
+    <port-component-uri>RoleServiceWS</port-component-uri>
+  </port-component>
+  <port-component>
+    <ejb-name>UserRoleServiceWS</ejb-name>
+    <port-component-uri>UserRoleServiceWS</port-component-uri>
+  </port-component>
+  <port-component>
+    <ejb-name>SecurityServiceWS</ejb-name>
+    <port-component-uri>SecurityServiceWS</port-component-uri>
+  </port-component>
+</webservices>
