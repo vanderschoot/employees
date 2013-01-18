@@ -1,0 +1,43 @@
+<div class="loginform">		
+		<div id="div-login" style="width: 300px;float: right;">
+			<form>
+				<div style="width:50%;float:left"><label style="width:50%;color:white">username: </label><input id="inp1-username" type="text" /></div>
+				<div style="width:50%;float:right"><label style="width:50%;color:white">password: </label><input id="inp1-password" type="password" /></div>
+				<div style="clear: both"><input type="button"  name="login" value="Login" onclick="logmein()" />
+				<div style="width:75%;float:right">
+				<a href="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-register').removeClass('hide');$('.messages').html('');return true;">Registreer nieuw Account</a>  
+				<a href="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-passwordreminder').removeClass('hide');$('.messages').html('');return true;">Wachtwoord vergeten?</a>  
+				</div>
+				</div>
+				<div id="login-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</form>
+		</div>
+		<div id="div-register" class="hide" style="width: 300px;float: right;">
+			<form>
+				<div style="width:100%;float:left;color:white"><label style="width:50%">email: </label><input id="inp2-email" type="text" /></div>
+				<div style="width:100%;float:left;color:white"><label style="width:50%">username: </label><input id="inp2-username" type="text" /></div>
+				<div style="width:100%;float:right;color:white"><label style="width:50%">password: </label><input id="inp2-password" type="password" /></div>
+				<div style="width:100%;float:left;color:white"><label style="width:50%">repeat password: </label><input id="inp2-password2" type="password" /></div>
+				<input type="button"  name="register" value="Registreer" onclick="registerme()" />
+				<a href="#" style="color:white" onclick="$('#div-login').removeClass('hide');$('#div-register').addClass('hide');$('.messages').html('');return true;">Account beschikbaar: Login </a>  
+				<div id="reg-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</form>
+		</div>
+		<div id="div-passwordreminder" class="hide" style="width: 300px;float: right;">
+			<form>
+				<div style="width:100%;float:left"><p style="color:white">If you forgot your password, you can ask a new one.</p></div>
+				<div style="width:100%;float:left"><label style="width:25%;color:white">email: </label><input id="inp3-email" type="text" /></div>
+				<div style="width:100%;float:left"><label style="width:50%;color:white">username: </label><input id="inp3-username" type="text" /></div>
+				<input type="button"  name="register" value="Verzoek" onclick="askpassword()" />
+				<a href="#" style="color:white" onclick="$('#div-login').removeClass('hide');$('#div-passwordreminder').addClass('hide');$('.messages').html('');return true;">Account beschikbaar: Login </a>  
+				<div id="pwr-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</form>
+		</div>
+		<div id="div-logout" class="hide" style="width: 300px;float: right;">
+			<span id="usernameLoggedIn" style="padding-right:20px;color:white"></span>
+			<input type="button" name="logout" value="Loguit" onclick="logout()"/>			
+		</div>
+</div>

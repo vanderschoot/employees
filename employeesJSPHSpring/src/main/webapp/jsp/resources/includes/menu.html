@@ -1,0 +1,19 @@
+	<div class="menu">
+		<ul class="toplevel">
+		<li><a href="<%=request.getContextPath()%>/jsp/index.jsp">HOME</a></li>
+		<li><a href="#">Organization</a>
+		  <ul class="sublevel">
+		  <li><a href="<%=request.getContextPath()%>/control/department/list.html" class="roleUser">Departments</a></li>
+		  <li><a href="<%=request.getContextPath()%>/control/employee/list.html" class="roleUser">Employees</a></li>
+		  </ul>
+		</li>
+		<li><a href="#">Settings</a>
+		  <ul class="sublevel">
+		  <li><a href="<%=request.getContextPath()%>/control/user/list.html" class="roleAdministrator">Users</a></li>
+		  <li><a href="<%=request.getContextPath()%>/control/role/list.html" class="roleAdministrator">Roles</a></li>
+		  <li><a href="<%=request.getContextPath()%>/control/util/createdatabase.html">Maak Testdatabase</a></li>		  
+		  <li><a href="<%=request.getContextPath()%>/control/util/serverconfig.html">Server configuratie</a></li>		  
+		  </ul>
+		</li>
+		</ul>
+	</div>
