@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="../resources/includes/resources.xhtml" />  
+<title>Employee</title>
+</h:head>
+<h:body>
+<div id="container" class="container">
+<ui:include src="../resources/includes/header.xhtml" />  
+<ui:include src="../resources/includes/menu.xhtml" />  
+<div id="content" class="content">
+	<h1>Add/Edit Employee</h1>
+    <h:form id ="frm">
+    <h:inputHidden value="#{employeeBean.employeeId}" />
+    <table>
+        <tr><td>First Name :    </td><td><h:inputText  id="firstName" value="#{employeeBean.firstName}" /></td></tr>
+        <tr><td>Last Name : </td><td><h:inputText  id="lastName" value="#{employeeBean.lastName}" /></td></tr>
+        <tr><td>Birth Date : </td>
+    	    <td>
+        		<h:inputText  id="birthDate" value="#{employeeBean.birthDate}">
+	        		<f:convertDateTime pattern="d-M-yyyy" />
+        		</h:inputText>
+        	</td>
+        </tr>
+        <tr><td>Department : </td>
+    	    <td>
+	    	    <h:selectOneMenu value="#{employeeBean.departmentId}">
+   					<f:selectItems value="#{departmentBean.departments}" var="dep"
+   					itemLabel="#{dep.name}" itemValue="#{dep.departmentId}" />
+   				</h:selectOneMenu>
+	        	</td>
+        </tr>
+    </table>
+	<h:commandButton value="OK" action="#{employeeBean.save}" />
+    </h:form>
+</div> <!-- content -->
+<div class="push"></div>
+</div> <!-- container -->
+<ui:include src="../resources/includes/footer.xhtml" />  
+</h:body>
+</html>

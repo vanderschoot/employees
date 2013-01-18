@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="../resources/includes/resources.xhtml" />  
+<h:outputScript     library="js" name="server.js" target="head"/>
+<title>Server</title>
+</h:head>
+<h:body>
+<div id="container" class="container">
+<ui:include src="../resources/includes/header.xhtml" />  
+<ui:include src="../resources/includes/menu.xhtml" />  
+<div id="content" class="content">
+	<h1>Server Configuration</h1>
+    <h:form id="frmsrv">
+    <table>
+        <tbody>
+        <tr><td>Server :  </td><td><h:inputText id="server" name="server"/></td></tr>
+        <tr><td>Port :    </td><td><h:inputText  id="port" name="port"/></td></tr>
+        <tr><td>Project : </td><td><h:inputText  id="project" name="project"/></td></tr>
+        <tr><td><h:commandButton value="OK" action="index" onclick="return saveServer()"/></td><td></td></tr>
+        </tbody>
+    </table>
+    </h:form>  
+</div> <!-- content -->
+<div class="push"></div>
+</div> <!-- container -->
+<ui:include src="../resources/includes/footer.xhtml" />  
+</h:body>
+</html>

@@ -1,0 +1,135 @@
+
+/* properties for sticky footer: leaves the footer div at the window bottom */
+* {
+margin: 0;
+}
+
+html,body {
+height: 100%;
+}
+
+.container {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
+position:relative;
+}
+
+.footer, .push {
+height: 40px;
+}
+
+/* General styling for body*/
+body {
+font-family: Arial, Helvetica,sans-serif;
+font-size:15px;
+border-width:0px;
+padding:0px;
+}
+
+/* Layout of body, header, title, content, footer div's*/
+
+.header {
+position:fixed;
+left:0px;
+top:0px;
+height:100px;
+width:100%;"
+/*color:#15428b;*/
+color:white;
+background:black;
+border-width:0px;
+padding:0px;
+z-index:2;	
+}
+.headerimage {
+position:relative;
+left:0px;
+top:0px;
+width:40%;
+}
+.loginform {
+position:absolute;
+right:0%;
+top:0%;
+width:60%;
+}
+.menu {
+position:fixed;
+left:0px;
+top:100px;
+width:100%;
+height:40px;
+z-index:1;	
+}
+.content {
+position:fixed;
+left:0px;
+top:140px;
+width:100%;
+height:100%;
+background:transparant;
+border-width:0px;
+padding:0px;
+}
+.title {
+position:fixed;  /* Fixed within iframe */
+left:0px;
+top:0px;
+height:40px;
+width:100%;
+/*background:url('images/panel_title.png') repeat-x;*/
+background:blue;
+font-size:25px;
+/*color:#15428b;*/
+color:white;
+border-width:0px;
+padding:0px 0px 0px 5px;
+align:right;
+}
+.page {
+position:fixed;
+left:0px;
+top:40px;
+height:100%;
+width:100%;
+background:transparant;
+border-width:0px;
+padding:0px;
+}
+
+.footer {
+/*background:url('images/panel_title.png') repeat-x;*/
+background:black;
+color:white;
+position:relative;
+text-align:center;
+}
+
+/*
+properties to show / hide blocks via jQuery addClass()
+*/
+
+.hide {
+display:none;
+}
+
+
+/* Labels need display:block property otherwise width has no effect */
+label {
+	float:left;
+	display:block;
+	color:#15428b;
+}
+
+input[type='button'] {
+	color:#15428b;
+}
+
+
+
+
+
+
+

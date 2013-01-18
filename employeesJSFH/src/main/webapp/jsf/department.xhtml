@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="../resources/includes/resources.xhtml" />  
+<title>Departments</title>
+</h:head>
+<h:body>
+<div id="container" class="container">
+<ui:include src="../resources/includes/header.xhtml" />  
+<ui:include src="../resources/includes/menu.xhtml" />  
+<div id="content" class="content">
+	<h1>Add/Edit Department</h1>
+    <h:form id ="frm">
+    <h:inputHidden value="#{departmentBean.departmentId}" />
+    <table>
+        <tr><td>Name :    </td><td><h:inputText  type="text" id="name" value="#{departmentBean.name}" /></td></tr>
+        <tr><td>Address : </td><td><h:inputText  type="text" id="address" value="#{departmentBean.address}" /></td></tr>
+        <tr><td>Budget  : </td><td><h:inputText  type="text" id="budget" value="#{departmentBean.budget}" /></td></tr>
+    </table>
+	<h:commandButton value="OK" action="#{departmentBean.save}" />
+    </h:form>
+</div> <!-- content -->
+<div class="push"></div>
+</div> <!-- container -->
+<ui:include src="../resources/includes/footer.xhtml" />  
+</h:body>
+</html>
