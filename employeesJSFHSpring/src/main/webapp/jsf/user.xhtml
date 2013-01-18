@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="../resources/includes/resources.xhtml" />  
+<title>User</title>
+</h:head>
+<h:body>
+<div id="container" class="container">
+<ui:include src="../resources/includes/header.xhtml" />  
+<ui:include src="../resources/includes/menu.xhtml" />  
+<div id="content" class="content">
+	<h1>Add/Edit User</h1>
+    <h:form id ="frm">
+    <h:inputHidden id = "userId" value="#{userBean.userId}" />
+    <table>
+        <tr><td>User Name : </td>
+        	<td><h:inputText  id="userName" value="#{userBean.userName}" label="Email Address" required="true" >
+	    	    	<f:validator binding = "#{usernameUniqueValidator}" />
+ 					<f:attribute name="userBean" value="#{userBean}"/>
+    	    	</h:inputText>
+    	    	<h:message for="userName" style="color:red" />
+	        </td>
+        </tr>
+        <tr><td>Password :  </td>
+        <td><h:inputText  id="password" value="#{userBean.password}" required="true"  />
+	        <h:message for="password" style="color:red" />
+        </td>
+        </tr>
+        <tr><td>Email  :    </td>
+        	<td><h:inputText  id="email" value="#{userBean.email}" required="true" >
+		    	    <f:validator validatorId="org.biz.employees.control.validators.EmailValidator" />
+    	    	</h:inputText>
+    		    <h:message for="email" style="color:red" />
+        	</td>
+        </tr>
+        <tr><td>Roles :     </td>
+    	    <td>
+	    	    <h:selectManyListbox id="roles" value="#{userBean.roleIds}" required="true" >
+   					<f:selectItems value="#{userBean.roles}" var="rol"
+   					itemLabel="#{rol.name}" itemValue="#{rol.roleId}" />
+   				</h:selectManyListbox>
+   				<h:message for="roles" style="color:red" />
+	        	</td>
+        </tr>
+    </table>
+	<h:commandButton value="OK" action="#{userBean.save}" />
+    </h:form>
+</div> <!-- content -->
+<div class="push"></div>
+</div> <!-- container -->
+<ui:include src="../resources/includes/footer.xhtml" />  
+</h:body>
+</html>

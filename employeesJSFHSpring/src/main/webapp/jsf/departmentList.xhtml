@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="../resources/includes/resources.xhtml" />  
+<title>Departments</title>
+</h:head>
+<h:body>
+<div id="container" class="container">
+<ui:include src="../resources/includes/header.xhtml" />  
+<ui:include src="../resources/includes/menu.xhtml" />  
+<div id="content" class="content">
+<h1>Departments</h1>
+<h:form id ="frm">
+  		<h:dataTable value="${departmentBean.departments}" var="dep"
+    			styleClass="data-table"
+    			headerClass="data-table-header"
+    			rowClasses="data-table-odd-row,data-table-even-row"> 
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Department Id</f:facet>
+    				<!-- row record -->
+				    <h:outputText value="#{dep.departmentId}" />
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Name</f:facet>
+				    <h:outputText value="#{dep.name}" />
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Address</f:facet>
+				    <h:outputText value="#{dep.address}"/>
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Budget</f:facet>
+				    <h:outputText value="#{dep.budget}"/>
+    			</h:column>
+    			
+    			<h:column>
+					<f:facet name="header">EDIT</f:facet> 
+				    <h:commandButton type="submit" value="Edit" action="#{departmentBean.edit(dep)}"/>
+				</h:column>
+    			<h:column>
+					<f:facet name="header">DELETE</f:facet> 
+				    <h:commandButton type="submit" value="Delete" action="#{departmentBean.delete(dep)}" />
+				</h:column>
+    			<h:column>
+					<f:facet name="header">Employees</f:facet> 
+				    <h:commandButton type="submit" value="&mdash;&gt;" action="#{employeeBean.show4Department(dep)}" />
+				</h:column>					        
+ 				
+    		</h:dataTable>
+    <h:commandButton value="Add" action="#{departmentBean.add()}" />
+</h:form>    
+</div> <!-- content -->
+<div class="push"></div>
+</div> <!-- container -->
+<ui:include src="../resources/includes/footer.xhtml" />  
+</h:body>
+</html>

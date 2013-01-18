@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mycomps="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            <ui:insert name="pageTitle">
+                <h:outputText value="Title"></h:outputText>
+            </ui:insert>
+        </title>
+        <h:outputStylesheet library="css" name="menu.css"/>
+        <h:outputStylesheet library="css" name="main.css"/>
+        <h:outputScript     library="js" name="jquery-1.8.2.js" target="head"/>
+        <h:outputScript     library="js" name="webtoolkit.base64.js" target="head"/>
+        <h:outputScript     library="js" name="menu.js" target="head"/>
+        <h:outputScript     library="js" name="security.js" target="head"/>
+        <h:outputScript     library="js" name="server.js" target="head"/>
+        <h:outputScript     library="js" name="utils.js" target="head"/>        
+        
+     </h:head>
+    <h:body>
+    		    <h:graphicImage  value="#{resource['images:header.png']}"></h:graphicImage>		
+		    <mycomps:menu/>
+			<h:form id="navigationBar">
+				<div class="navBarClass">
+					<ui:insert name="navigationBar"></ui:insert>
+				</div>
+			</h:form>
+    
+    
+    </h:body>
+</html>

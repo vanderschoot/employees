@@ -1,0 +1,28 @@
+.data-table, table{   
+	border-collapse:collapse;
+	text-align:left;
+}
+ 
+.data-table,th, td
+{
+	border: 1px solid black;
+	text-align:left;
+}
+
+.data-table-header{
+	text-align:left;
+	color:white;
+	background:none repeat scroll 0 0 blue;
+	border-bottom:1px solid grey;
+	padding:16px;
+}
+ 
+.data-table-odd-row{
+	background:none repeat scroll 0 0 lightgrey;
+	border-top:1px solid grey;
+}
+ 
+.data-table-even-row{
+	background:none repeat scroll 0 0 white;
+	border-top:1px solid grey;
+}

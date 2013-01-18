@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  >
+     <body>
+ 	 <div class="menu">
+	    <h:form>
+		<ul class="toplevel">
+		<li><h:link value="HOME" outcome="index" /></li>
+		
+		<li><h:link value="Organization" outcome="index" />
+		  <ul class="sublevel">		  
+		  <li><h:link value="Departments" outcome="departmentList" class="roleUser" /></li>
+		  <li><h:commandLink value="Employees" action="#{employeeBean.showAll}" class="roleUser"/></li>
+		  </ul>
+		</li>
+		<li><h:link value="Settings" outcome="index" />
+		  <ul class="sublevel">
+		  <li><h:link value="Users" outcome="userList" class="roleAdministrator" /></li>
+		  <li><h:link value="Roles" outcome="roleList" class="roleAdministrator" /></li>
+		  <li><h:commandLink value="Create Database" action="#{utilBean.createdatabase()}" /></li>
+		  <li><h:link value="Server" outcome="server" /></li>
+		  </ul>
+		</li>
+		</ul>
+		</h:form>
+	</div>
+    </body>
+</html>

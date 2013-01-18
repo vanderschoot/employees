@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<ui:include src="resources.xhtml" />  
+<title></title>
+</h:head>
+<h:body>
+<div class="loginform">		
+		<div id="div-login" style="width: 350px;float: right;">
+			<h:form id ="frmsec1">
+				<div style="width:50%;float:left"><h:outputLabel  value="username:" style="width:50%;color:white"/><h:inputText id="inp1-username"/></div>
+				<div style="width:50%;float:right"><h:outputLabel  value="password" style="width:50%;color:white"/><h:inputSecret id="inp1-password"/></div>
+				<div style="clear: both"><h:commandButton name="login" value="Login" onclick="logmein();" />
+				<div style="width:75%;float:right">
+				<h:link value="Registreer account" outcome="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-register').removeClass('hide');$('.messages').html('');return true;"/><br/>
+				<h:link value="Wachtwoord vergeten" outcome="#" style="color:white" onclick="$('#div-login').addClass('hide');$('#div-passwordreminder').removeClass('hide');$('.messages').html('');return true;"/>
+				</div>
+				</div>
+				<div id="login-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</h:form>
+		</div>
+		<div id="div-register" class="hide" style="width: 350px;float: right;">
+			<h:form id ="frmsec2">
+				<div style="width:100%;float:left;color:white"><h:outputLabel  value="email:"  style="width:50%;color:white"/><h:inputText id="inp2-email"/></div>
+				<div style="width:100%;float:left;color:white"><h:outputLabel  value="username:" style="width:50%;color:white"/><h:inputText id="inp2-username" /></div>
+				<div style="width:100%;float:right;color:white"><h:outputLabel  value="password:" style="width:50%;color:white"/><h:inputSecret  id="inp2-password" /></div>
+				<div style="width:100%;float:left;color:white"><h:outputLabel  value="repeat password:" style="width:50%;color:white"/><h:inputSecret id="inp2-password2"  /></div>
+				<h:commandButton type="button" value="Registreer" onclick="registerme()" />
+				<h:commandButton type="button" value="Cancel" onclick="$('#div-login').removeClass('hide');$('#div-register').addClass('hide');$('.messages').html('');return true;"/>
+				<div id="reg-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</h:form>
+		</div>
+		<div id="div-passwordreminder" class="hide" style="width: 350px;float: right;">
+			<h:form id ="frmsec3">
+				<div style="width:100%;float:left"><p style="color:white">Vraag je password aan.</p></div>
+				<div style="width:100%;float:left"><h:outputLabel  value="email:"  style="width:25%;color:white"/><h:inputText id="inp3-email"/></div>
+				<div style="width:100%;float:left"><h:outputLabel  value="username:"  style="width:25%;color:white"/><h:inputText id="inp3-username" /></div>
+				<h:commandButton type="button" value="Verzoek" onclick="askpassword()" />
+				<h:commandButton type="button"  value="Cancel" onclick="$('#div-login').removeClass('hide');$('#div-passwordreminder').addClass('hide');$('.messages').html('');return true;"/>
+				<div id="pwr-messages" class="messages" style="width: 100%;float: left">
+				</div>
+			</h:form>
+		</div>
+		<div id="div-logout" class="hide" style="width: 300px;float: right;">
+			<h:form id ="frmsec4">
+			   <span id="usernameLoggedIn" style="padding-right:20px;color:white"></span>
+			   <h:commandButton type="button" value="Loguit" onclick="logout()"/>	
+			</h:form>		
+		</div>
+</div>
+</h:body>
+</html>
