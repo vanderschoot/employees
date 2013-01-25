@@ -27,7 +27,7 @@
               <username>admin</username>
               <password>adminjoost</password>
               <!--  <server>CentosTomcat</server> -->
-              <path>/employeesJSFHSpring</path>
+              <path>/employeesJSPHSpring</path>
               <update>true</update>
           </configuration>
       </plugin>
