@@ -22,11 +22,6 @@
          <groupId>org.jboss.as.plugins</groupId>
          <artifactId>jboss-as-maven-plugin</artifactId>
          <version>7.3.Final</version>
-          <configuration>
-              <username>admin</username>
-              <password>adminjoost</password>
-              <update>true</update>
-          </configuration>
       </plugin>
     </plugins>
   </build>
