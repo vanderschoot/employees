@@ -77,7 +77,7 @@ public class DepartmentDAOTestMocked {
 		// Stel het verwachte antwoord in voor dao.save() die een em.persist() uitvoert
 		// Omdat persist een void return heeft is when() niet mogelijk
 		// Er wordt daarom gebruik gemaakt van doAnswer() of doNothing() of doThrow()
-		// Er is maar één aanpak nodig, maar als voorbeeld staan ze er alle 3
+		// Er is maar een aanpak nodig, maar als voorbeeld staan ze er alle 3
 		// Voor doThrow() moet de @Test(expected=RuntimeException.class) worden gebruikt. 
 		doAnswer(new Answer<Object>() {
 	        public Object answer(InvocationOnMock invocation) {
