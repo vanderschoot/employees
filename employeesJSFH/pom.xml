@@ -105,25 +105,25 @@
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-annotations</artifactId>
   		<version>3.5.4-Final</version>
-  		<scope>test</scope>
+  		<scope>provided</scope>
   	</dependency>
   	<dependency>
 	   <groupId>org.hibernate</groupId>
 	   <artifactId>hibernate-entitymanager</artifactId>
 	   <version>3.5.4-Final</version>
-	   <scope>test</scope>
+	   <scope>provided</scope>
   	</dependency>
     <dependency>
 	   <groupId>org.hibernate.javax.persistence</groupId>
 	   <artifactId>hibernate-jpa-2.0-api</artifactId>
 	   <version>1.0.0.Final</version>
-	   <scope>test</scope>
+	   <scope>provided</scope>
     </dependency>
     <dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
 		<version>1.4</version>
-		<scope>test</scope>
+		<scope>provided</scope>
     </dependency>
     <dependency>
     	<groupId>org.projectlombok</groupId>
