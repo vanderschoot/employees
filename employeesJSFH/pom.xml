@@ -27,7 +27,8 @@
               <port>9999</port>
               <username>admin</username>
               <password>adminjoost</password>
-              <!-- <update>true</update> -->
+              <path>/employeesJSFH</path>
+              <update>true</update>
           </configuration>
       </plugin>
     </plugins>
