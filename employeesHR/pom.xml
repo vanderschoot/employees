@@ -19,7 +19,7 @@
               <username>admin</username>
               <password>adminjoost</password>
               <path>/employeesHR</path>
-              <webXml>WebContent/WEB-INF/web.xml</webXml>
+              <webXml>/WebContent/WEB-INF/web.xml</webXml>
               <update>true</update>
           </configuration>
       </plugin>
