@@ -214,6 +214,13 @@
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>7.1.1.Final</version>
+	            <configuration>
+	              <hostname>localhost</hostname>
+	              <port>9999</port>
+	              <server>CentosJBoss7</server>
+	              <path>/employeesRESTHJB</path>
+	              <update>true</update>
+	            </configuration>
             </plugin>
         </plugins>
     </build>
