@@ -217,7 +217,8 @@
 	            <configuration>
 	              <hostname>localhost</hostname>
 	              <port>9999</port>
-	              <server>CentosJBoss7</server>
+	              <username>admin</username>
+	              <password>adminjoost</password>
 	              <path>/employeesRESTHJB</path>
 	              <update>true</update>
 	            </configuration>
