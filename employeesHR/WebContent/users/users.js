@@ -42,7 +42,7 @@ function editUser(){
                 dataType: "json",
                 success: function (data) {
                     console.log("edituser data received , data = " + data);
-                    $.each(data.rows, function (i, item) {
+                    $.each(data, function (i, item) {
                         console.log("i=" + i + " / item = " + item);
                         $('#roles').combobox('select',item.role.roleId); 
                     });
