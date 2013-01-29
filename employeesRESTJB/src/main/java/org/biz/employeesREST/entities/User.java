@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 @Entity
+@Table(name = "user")
 @XmlRootElement(name="rows")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -13,6 +13,7 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name = "employee")
 @NamedQueries({
     @NamedQuery(name = "employee.list", query = "select e from Employee e")
 })

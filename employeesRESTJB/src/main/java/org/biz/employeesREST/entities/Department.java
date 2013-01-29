@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 @Entity
+@Table(name = "department")
 @XmlRootElement(name="rows")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
